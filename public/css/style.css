@@ -44,6 +44,11 @@ div.content-container {
     background-color: #E1DEF1;
 }
 
+div.vertical-spacing {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
 div.state-div {
     display: inline-flex;
     padding: 4px 12px;
@@ -59,19 +64,31 @@ div.state-div {
     color: #313133;
 }
 
-.active {
+.card-layout {
     width: 98%;
-    margin: 5px 5px;
+    margin: 10px 5px;
 }
 
 .active-bg {
     background-color: #C981EB;
-    color: white;
+}
+
+.confirmed-bg {
+    background-color: #195EFF;
+}
+
+.recovery-bg {
+    background-color: green;
+}
+
+.death-bg {
+    background-color: red;
 }
 
 .card-title {
     font-size: 20px;
     font-weight: 500;
+    color: white
 }
 
 
@@ -104,7 +121,7 @@ div.state-div {
         margin-top: 0px;
     }
 
-    .active {
+    .card-layout {
         width: 98%;
         margin: 5px 18px;
     }
@@ -112,9 +129,11 @@ div.state-div {
     .card-title {
         font-size: 28px;
         font-weight: 600;
+        color: white;
     }
 
-    .card-padding {
+    .card-header-padding {
         padding: 20px 20px 20px 20px;
     }
+    
 }
