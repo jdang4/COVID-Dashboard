@@ -84,7 +84,7 @@ let Controller = (() => {
 		recovered: 'recovered-stats',
 		death: 'death-stats',
 		USState: 'state-name',
-		state-dev: 'state-div',
+		stateDiv: 'state-div',
 	};
 
 	// define helper functions
@@ -140,14 +140,14 @@ window.onload = function() {
 		// add your event listeners
 		document.getElementById(HTML.selectStates).addEventListener('change', (event) => {
 			Controller.setState(event.target.value);
-			Controller.setStatistics();
+			Controller.setTotalStatistics();
 		})
 	};
 
 	let init = () => {
 		console.log('Initializing...');
 		setupEventListeners();
-		Controller.setStatistics();
+		Controller.setTotalStatistics();
 	}
 	init();
 }
