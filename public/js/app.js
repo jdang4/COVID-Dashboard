@@ -70,7 +70,10 @@ let Controller = (() => {
 	// define helper functions
 	return {
 		// functions u want to access from Controller
-		getHTML() { return HTML; }
+		getHTML() { return HTML; },
+		getState() { return state; },
+		setState(newState) { state = newState; }
+
 	}
 })();
 
@@ -112,42 +115,35 @@ async function getTimeData(state, startDate, endDate) {
 
 }
 
-async function getStatistics() {
-	var fetch = require("node-fetch");
+async function getStatistics(state) {
 
-	let response = await fetch('https://corona.lmao.ninja/v2/states');
+	let response = await fetch('https://corona.lmao.ninja/v2/states/' + state);
 	let data = await response.json();
 
-	var posAr = new Array();
+	var totalCases = data.cases;
+	var totalDeaths = data.deaths;
+	var totalRecovered = data.recovered;
 
-	for(var i = 0; i < Object.keys(data).length; i++) {
-		var totalCases = data[i].cases;
-		var totalDeaths = data[i].deaths;
-		var totalRecovered = data[i].recovered;
-		
-		console.log('total cases: ' + totalCases.toString() + ' total deaths: ' + totalDeaths.toString() + ' total recovered: ' + totalRecovered.toString());
+		alert('total cases: ' + totalCases.toString() + ' total deaths: ' + totalDeaths.toString() + ' total recovered: ' + totalRecovered.toString());
 
-		// ignore for now
-		posAr.push(data[i].cases);
-	}
-
-	return posAr;
 }
 
 // getPositiveCases().then(data => console.log(data));
-// getStatistics();
+// getStatistics('california');
 // getDates(new Date(2020, 10, 8), new Date(2020, 11, 15));
-//getTimeData('CA', new Date(2020, 5, 5), new Date(2020, 5, 10));
-
+// getTimeData('CA', new Date(2020, 5, 5), new Date(2020, 5, 10));
 
 window.onload = function() {
 	Controller;
 	let HTML = Controller.getHTML();
 	let setupEventListeners = () => {
 		// add your event listeners
-		document.getElementById(HTML.selectStates).addEventListener('change', (event) => {
-			alert('FUCK YOU TED. U PIECE OF SHIT')
-			document.getElementById(HTML.active).innerHTML = '5';
+		var selState = document.getElementById(HTML.selectStates);
+		selState.addEventListener('change', (event) => {
+			getStatistics(event.target.value);
+			Controller.setState(event.target.value);
+			//document.getElementById(HTML.active).innerHTML = '5';
+			
 		})
 	};
 
