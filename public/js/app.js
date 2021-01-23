@@ -83,7 +83,8 @@ let Controller = (() => {
 		confirmed: 'confirmed-stats',
 		recovered: 'recovered-stats',
 		death: 'death-stats',
-		USState: 'state-name'
+		USState: 'state-name',
+		state-dev: 'state-div',
 	};
 
 	// define helper functions
