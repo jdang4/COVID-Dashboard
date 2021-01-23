@@ -56,6 +56,24 @@ states = {
 	
 }
 
+let Controller = (() => {
+	let state = 'Alabama';
+
+	let HTML = {
+		selectStates: 'state',
+		active: 'active-stats',
+		confirmed: 'confirmed-stats',
+		recovered: 'recovered-stats',
+		death: 'death-stats',
+	};
+
+	// define helper functions
+	return {
+		// functions u want to access from Controller
+		getHTML() { return HTML; }
+	}
+})();
+
 // fcn params are strings
 function getDates(startDate, endDate) {
 	const moment = require('moment');
@@ -119,4 +137,19 @@ async function getStatistics() {
 // getPositiveCases().then(data => console.log(data));
 // getStatistics();
 // getDates(new Date(2020, 10, 8), new Date(2020, 11, 15));
-getTimeData('CA', new Date(2020, 5, 5), new Date(2020, 5, 10));
+//getTimeData('CA', new Date(2020, 5, 5), new Date(2020, 5, 10));
+
+
+((Controller) => {
+	let HTML = Controller.getHTML();
+	let setupEventListeners = () => {
+		// add your event listeners
+	};
+
+	let init = () => {
+		console.log('Initializing...');
+		setupEventListeners();
+	}
+	init();
+
+})(Controller);
