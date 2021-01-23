@@ -60,11 +60,11 @@ let Controller = (() => {
 	let state = 'Alabama';
 
 	let HTML = {
-		selectStates: '#state',
-		active: '#active-stats',
-		confirmed: '#confirmed-stats',
-		recovered: '#recovered-stats',
-		death: '#death-stats',
+		selectStates: 'state',
+		active: 'active-stats',
+		confirmed: 'confirmed-stats',
+		recovered: 'recovered-stats',
+		death: 'death-stats',
 	};
 
 	// define helper functions
@@ -145,9 +145,9 @@ window.onload = function() {
 	let HTML = Controller.getHTML();
 	let setupEventListeners = () => {
 		// add your event listeners
-		document.querySelector(HTML.selectStates).addEventListener('change', (event) => {
+		document.getElementById(HTML.selectStates).addEventListener('change', (event) => {
 			alert('FUCK YOU TED. U PIECE OF SHIT')
-			document.querySelector(HTML.active).innerHTML = '5';
+			document.getElementById(HTML.active).innerHTML = '5';
 		})
 	};
 
