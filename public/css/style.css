@@ -166,7 +166,7 @@ div.state-div {
     }
 
     .label-total-cases {
-        font-size: 30px;
+        font-size: 25px;
         font-weight: 600;
         margin-top: 18px;
         text-align: center;
@@ -175,8 +175,8 @@ div.state-div {
     }
     
     .stats-total-cases {
-        font-size: 4em;
-        font-weight: 700;
+        font-size: 5em;
+        font-weight: 800;
         text-align: center;
     }
     

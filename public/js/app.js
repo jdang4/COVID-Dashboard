@@ -72,7 +72,13 @@ let Controller = (() => {
 		// functions u want to access from Controller
 		getHTML() { return HTML; },
 		getState() { return state; },
-		setState(newState) { state = newState; }
+		setState(newState) { state = newState; },
+		setStatistics() {
+			axios.get("https://corona.lmao.ninja/v2/states/" + state.toLowerCase() + "/").then( resp => {
+				let res = resp['data'];
+				console.log(res);
+			})
+		}
 
 	}
 })();
@@ -124,7 +130,7 @@ async function getStatistics(state) {
 	var totalDeaths = data.deaths;
 	var totalRecovered = data.recovered;
 
-		alert('total cases: ' + totalCases.toString() + ' total deaths: ' + totalDeaths.toString() + ' total recovered: ' + totalRecovered.toString());
+	alert('total cases: ' + totalCases.toString() + ' total deaths: ' + totalDeaths.toString() + ' total recovered: ' + totalRecovered.toString());
 
 }
 
@@ -138,17 +144,10 @@ window.onload = function() {
 	let HTML = Controller.getHTML();
 	let setupEventListeners = () => {
 		// add your event listeners
-<<<<<<< HEAD
 		document.getElementById(HTML.selectStates).addEventListener('change', (event) => {
-			document.getElementById(HTML.active).innerHTML = '5';
-=======
-		var selState = document.getElementById(HTML.selectStates);
-		selState.addEventListener('change', (event) => {
-			getStatistics(event.target.value);
 			Controller.setState(event.target.value);
-			//document.getElementById(HTML.active).innerHTML = '5';
-			
->>>>>>> d27d25614f12721b315082e0a7d82ffd90a97fb3
+			alert(event.target.value);
+			Controller.setStatistics();
 		})
 	};
 
