@@ -60,11 +60,11 @@ let Controller = (() => {
 	let state = 'Alabama';
 
 	let HTML = {
-		selectStates: 'state',
-		active: 'active-stats',
-		confirmed: 'confirmed-stats',
-		recovered: 'recovered-stats',
-		death: 'death-stats',
+		selectStates: '#state',
+		active: '#active-stats',
+		confirmed: '#confirmed-stats',
+		recovered: '#recovered-stats',
+		death: '#death-stats',
 	};
 
 	// define helper functions
@@ -140,10 +140,15 @@ async function getStatistics() {
 //getTimeData('CA', new Date(2020, 5, 5), new Date(2020, 5, 10));
 
 
-((Controller) => {
+window.onload = function() {
+	Controller;
 	let HTML = Controller.getHTML();
 	let setupEventListeners = () => {
 		// add your event listeners
+		document.querySelector(HTML.selectStates).addEventListener('change', (event) => {
+			alert('FUCK YOU TED. U PIECE OF SHIT')
+			document.querySelector(HTML.active).innerHTML = '5';
+		})
 	};
 
 	let init = () => {
@@ -151,5 +156,4 @@ async function getStatistics() {
 		setupEventListeners();
 	}
 	init();
-
-})(Controller);
+}
