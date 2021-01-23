@@ -14,7 +14,7 @@ class StateForm extends React.Component {
                 <label for="state" id="state-label">Select State: &nbsp;</label>
                 <select name="state" id="state">
                     {states.map(state => (
-                        <option value={state}>{state}</option>
+                        <option class="state" value={state}>{state}</option>
                     ))}
                 </select>
             </div>
