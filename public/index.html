@@ -25,6 +25,11 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <!--Favicon-->
     <link rel="icon" type="image/png" href="favicon.ico" />
 
@@ -63,9 +68,12 @@
                     <div class="row">
                         <div class="col-lg-7"></div>
                         <div class="col-lg-5">
-                            <div class="text-center">
-                                <h3>Dates</h3>
-                            </div>
+                            <form class="form-inline">
+                                <label>Select Dates</label>
+                                    <input type="text" name="startDate" class="datepicker dateinput" id="startDate">
+                                    <h5>to</h5>
+                                    <input type="text" name="endDate" class="datepicker dateinput" id="endDate">
+                            </form>
                             <div class="label-total-cases">Total Confirmed Cases</div>
                             <div class="stats-total-cases confirmed-color">10,000</div>
                         </div>
@@ -94,6 +102,16 @@
             </div>
         </div>
     </main>
-
+    <script>
+        $(function() {
+          $( ".datepicker" ).datepicker({
+            dateFormat:'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "2019:2021",
+            // You can put more options here.
+          });
+        });
+        </script>
 </body>
 </html>
