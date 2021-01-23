@@ -138,11 +138,11 @@ window.onload = function() {
 	let HTML = Controller.getHTML();
 	let setupEventListeners = () => {
 		// add your event listeners
-		var selState = document.getElementById(HTML.selectStates);
-		selState.addEventListener('change', (event) => {
-			getStatistics(event.target.value);
+		document.getElementById(HTML.selectStates).addEventListener('change', (event) => {
+			alert("hi");
+			//getStatistics(event.target.value);
 			Controller.setState(event.target.value);
-			//document.getElementById(HTML.active).innerHTML = '5';
+			document.getElementById(HTML.active).innerHTML = '5';
 			
 		})
 	};
