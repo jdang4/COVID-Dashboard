@@ -56,41 +56,6 @@ states = {
 	
 }
 
-let Controller = (() => {
-	let state = 'Alabama';
-
-	let HTML = {
-		selectStates: 'state',
-		active: 'active-stats',
-		confirmed: 'confirmed-stats',
-		recovered: 'recovered-stats',
-		death: 'death-stats',
-		USState: 'state-name'
-	};
-
-	// define helper functions
-	return {
-		// functions u want to access from Controller
-		getHTML() { return HTML; },
-		getState() { return state; },
-		setState(newState) { state = newState; },
-		async setStatistics() {
-			axios.get("https://corona.lmao.ninja/v2/states/" + state.toLowerCase() + "/").then( resp => {
-				let res = resp['data'];
-				
-				document.getElementById(HTML.active).innerText = res.active;
-				document.getElementById(HTML.confirmed).innerText = res.cases;
-				document.getElementById(HTML.recovered).innerText = res.recovered;
-				document.getElementById(HTML.death).innerText = res.deaths;
-				document.getElementById(HTML.USState).innerText = state;
-
-				console.log(res);
-			})
-		}
-
-	}
-})();
-
 // fcn params are strings
 function getDates(startDate, endDate) {
 	const moment = require('moment');
@@ -109,25 +74,58 @@ function getDates(startDate, endDate) {
 
 }
 
-// year - month - day, pass in Date objects
-async function getTimeData(state, startDate, endDate) {
-	var host = 'https://api.covidtracking.com/v1/states/' + state.toLowerCase() + '/';
-	var fetch = require("node-fetch");
+let Controller = (() => {
+	let state = 'Alabama';
 
-	var timeframe = getDates(startDate, endDate);
+	let HTML = {
+		selectStates: 'state',
+		active: 'active-stats',
+		confirmed: 'confirmed-stats',
+		recovered: 'recovered-stats',
+		death: 'death-stats',
+		USState: 'state-name'
+	};
 
-	for(var i = 0; i < timeframe.length; i++) {
-		var response = await fetch(host + timeframe[i].split('-').join('') + '.json');
-		var data = await response.json();
+	// define helper functions
+	return {
+		// functions u want to access from Controller
+		getHTML() { return HTML; },
+		getState() { return state; },
+		setState(newState) { state = newState; },
+		setTotalStatistics() {
+			axios.get("https://corona.lmao.ninja/v2/states/" + state.toLowerCase() + "/").then( resp => {
+				let res = resp['data'];
+				
+				document.getElementById(HTML.active).innerText = res.active;
+				document.getElementById(HTML.confirmed).innerText = res.cases;
+				document.getElementById(HTML.recovered).innerText = res.recovered;
+				document.getElementById(HTML.death).innerText = res.deaths;
+				document.getElementById(HTML.USState).innerText = state;
 
-		var cases = data.positive;
-		var deaths = '' + data.death;
+				console.log(res);
+			})
+		},
+		async setTimeframeStatistics(startDate, endDate) { // year - month - day, pass in Date objects
+			var host = 'https://api.covidtracking.com/v1/states/' + state.toLowerCase() + '/';
+			var fetch = require("node-fetch");
 		
-		console.log('cases: ' + cases + ' deaths: ' + deaths);
+			var timeframe = getDates(startDate, endDate);
 		
-	}	
+			for(var i = 0; i < timeframe.length; i++) {
+				var response = await fetch(host + timeframe[i].split('-').join('') + '.json');
+				var data = await response.json();
+		
+				var cases = '' + data.positive;
+				var deaths = '' + data.death;
+				var recovered = '' + data.recovered;
+				
+				console.log('cases: ' + cases + ' deaths: ' + deaths + ' recovered: ' + recovered);
+				
+			}	
+		}
 
-}
+	}
+})();
 
 // getPositiveCases().then(data => console.log(data));
 // getStatistics('california');
