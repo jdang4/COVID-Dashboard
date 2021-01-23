@@ -20,12 +20,8 @@ body {
     font-size: 28px;
 }
 
-.select-state {
-    float: right;
-}
-
-.inline {
-    display: inline-block;
+#react {
+    margin-top: 30px;
 }
 
 #state-label {
@@ -38,4 +34,41 @@ body {
 
 #selection {
     margin-top: 5px;
+}
+
+div.content-container {
+    max-width: 90%;
+    margin: 36px auto 36px auto;
+    background-color: #E1DEF1;
+}
+
+div.state-div {
+    display: inline-flex;
+    padding: 4px 12px;
+    margin: 8px 18px;
+    font-weight: 600;
+    font-size: 25px;
+    border-bottom: 5px solid black;
+} 
+
+.state-name {
+    margin-left: 5px;
+    text-transform: capitalize;
+    color: #313133;
+}
+
+
+/* for desktop view */
+@media screen and (min-width: 768px) {
+    .select-state {
+        float: right;
+    }
+
+    .inline {
+        display: inline-block;
+    }
+
+    #react {
+        margin-top: 0px;
+    }
 }

@@ -10,13 +10,13 @@ class StateForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="react">
                 <label for="state" id="state-label">Select State: &nbsp;</label>
                 <select name="state" id="state">
                     {states.map(state => (
                         <option value={state}>{state}</option>
                     ))}
-            </select>
+                </select>
             </div>
             
         );
