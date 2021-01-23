@@ -65,6 +65,7 @@ let Controller = (() => {
 		confirmed: 'confirmed-stats',
 		recovered: 'recovered-stats',
 		death: 'death-stats',
+		USState: 'state-name'
 	};
 
 	// define helper functions
@@ -73,9 +74,16 @@ let Controller = (() => {
 		getHTML() { return HTML; },
 		getState() { return state; },
 		setState(newState) { state = newState; },
-		setStatistics() {
+		async setStatistics() {
 			axios.get("https://corona.lmao.ninja/v2/states/" + state.toLowerCase() + "/").then( resp => {
 				let res = resp['data'];
+				
+				document.getElementById(HTML.active).innerText = res.active;
+				document.getElementById(HTML.confirmed).innerText = res.cases;
+				document.getElementById(HTML.recovered).innerText = res.recovered;
+				document.getElementById(HTML.death).innerText = res.deaths;
+				document.getElementById(HTML.USState).innerText = state;
+
 				console.log(res);
 			})
 		}
@@ -121,19 +129,6 @@ async function getTimeData(state, startDate, endDate) {
 
 }
 
-async function getStatistics(state) {
-
-	let response = await fetch('https://corona.lmao.ninja/v2/states/' + state);
-	let data = await response.json();
-
-	var totalCases = data.cases;
-	var totalDeaths = data.deaths;
-	var totalRecovered = data.recovered;
-
-	alert('total cases: ' + totalCases.toString() + ' total deaths: ' + totalDeaths.toString() + ' total recovered: ' + totalRecovered.toString());
-
-}
-
 // getPositiveCases().then(data => console.log(data));
 // getStatistics('california');
 // getDates(new Date(2020, 10, 8), new Date(2020, 11, 15));
@@ -146,7 +141,6 @@ window.onload = function() {
 		// add your event listeners
 		document.getElementById(HTML.selectStates).addEventListener('change', (event) => {
 			Controller.setState(event.target.value);
-			alert(event.target.value);
 			Controller.setStatistics();
 		})
 	};
