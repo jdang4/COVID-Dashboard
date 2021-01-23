@@ -148,6 +148,7 @@ window.onload = function() {
 	let init = () => {
 		console.log('Initializing...');
 		setupEventListeners();
+		Controller.setStatistics();
 	}
 	init();
 }
