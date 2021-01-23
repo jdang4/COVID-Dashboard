@@ -82,6 +82,10 @@ div.state-div {
     background-color: #195EFF;
 }
 
+.confirmed-color {
+    color: #195EFF;
+}
+
 .recovery-bg {
     background-color: green;
 }
@@ -94,6 +98,21 @@ div.state-div {
     font-size: 20px;
     font-weight: 500;
     color: white
+}
+
+.label-total-cases {
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 18px;
+    text-align: center;
+    text-decoration: underline;
+    text-transform: capitalize;
+}
+
+.stats-total-cases {
+    font-size: 3em;
+    font-weight: 700;
+    text-align: center;
 }
 
 
@@ -144,6 +163,21 @@ div.state-div {
 
     .card-header-padding {
         padding: 20px 20px 20px 20px;
+    }
+
+    .label-total-cases {
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: 18px;
+        text-align: center;
+        text-decoration: underline;
+        text-transform: capitalize;
+    }
+    
+    .stats-total-cases {
+        font-size: 4em;
+        font-weight: 700;
+        text-align: center;
     }
     
 }

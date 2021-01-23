@@ -146,7 +146,6 @@ window.onload = function() {
 	let setupEventListeners = () => {
 		// add your event listeners
 		document.getElementById(HTML.selectStates).addEventListener('change', (event) => {
-			alert('FUCK YOU TED. U PIECE OF SHIT')
 			document.getElementById(HTML.active).innerHTML = '5';
 		})
 	};
