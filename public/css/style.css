@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: black;
+}
+
+.header {
+    background: #313133;
+    padding: 25px 25px 25px 25px;
+    display: flow-root;
+}
+
+.title {
+    color: white;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.select-state {
+    float: right;
+}
+
+.inline {
+    display: inline-block;
+}
+
+#state-label {
+    color: white;
+}
+
+#state {
+    margin-left: 15px;
+}
+
+#selection {
+    margin-top: 5px;
+}

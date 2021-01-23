@@ -5,14 +5,30 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
 
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--For React-->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
     <!--Favicon-->
     <link rel="icon" type="image/png" href="favicon.ico" />
 
     <!--Custom Files-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/app.js"></script>
+    <script src="js/component.js" type="text/babel"></script>
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <div class="header">
+        <h1 class="title inline">COVID-19 Dashboard</h1>
+        <div class="float-right select-state inline" id="selection">
+            <div id="react-component"></div>
+        </div>
+    </div>
+
 </body>
 </html>
