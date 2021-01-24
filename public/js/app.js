@@ -55,7 +55,7 @@ var states = {
 
 // fcn params are strings
 function getDates(startDate, endDate) {
-	const moment = require('moment');
+	// const moment = require('moment');
 
 	var dateArray = [];
 	var start = moment(startDate);
@@ -114,39 +114,83 @@ let Controller = (() => {
 				console.log(res);
 			})
 		},
-		async setTimeframeStatistics(startDate, endDate) { // year - month - day, pass in Date objects
-			var host = 'https://api.covidtracking.com/v1/states/' + state.toLowerCase() + '/';
-			var fetch = require("node-fetch");
-		
-			var timeframe = getDates(startDate, endDate);
-		
-			for(var i = 0; i < timeframe.length; i++) {
-				var response = await fetch(host + timeframe[i].split('-').join('') + '.json');
-				var data = await response.json();
-		
-				var cases = '' + data.positive;
-				var deaths = '' + data.death;
-				var recovered = '' + data.recovered;
-				
-				console.log('cases: ' + cases + ' deaths: ' + deaths + ' recovered: ' + recovered);
-				
-			}	
-		},
 		setImg() {
 			document.getElementById(HTML.stateDiv).getElementsByTagName('img')[0].src = '../res/State-flags/' + stateAbbr[state].toLowerCase() + '.png';
 		},
 		setTimeframeCases(caseType, specifiedDays) {
+
+			var startDate = new Date()
+			var endDate = new Date().setDate(startDate.getDate()-specifiedDays)
+			
+			var data = setTimeframeStatistics(startDate, endDate, caseType, state);
 			if(caseType === 'Recovered') {
+
+				document.getElementById(HTML.recoveredTimeStat).innerText = sumResults(data);
 
 			} else if(caseType === 'Confirmed') {
 
+				document.getElementById(HTML.confirmedTimeStat).innerText = sumResults(data);
+
 			} else if(caseType === 'Deaths') {
 
+				document.getElementById(HTML.deathTimeStat).innerText = sumResults(data);
+				
 			}
 		},
 
 	}
 })();
+
+function sumResults(data) {
+	var sum = 0;
+
+	for(var i = 0; i < data.length; i++) {
+		if(data) {
+			sum += Number(data[i]);
+		}
+	}
+
+	return sum;
+}
+
+async function setTimeframeStatistics(startDate, endDate, caseType, state) { // year - month - day, pass in Date objects
+	var host = 'https://api.covidtracking.com/v1/states/' + state.toLowerCase() + '/';
+	// var fetch = require("node-fetch");
+
+	var caseData = []
+	var timeframe = getDates(startDate, endDate);
+
+	for(var i = 0; i < timeframe.length; i++) {
+		var response = await fetch(host + timeframe[i].split('-').join('') + '.json');
+		var data = await response.json();
+
+		if(caseType === 'Recovered') {
+			var recovered = '' + data.recovered;
+
+			caseData.push(recovered);
+
+		} else if(caseType === 'Confirmed') {
+			var positive = '' + data.positive;
+
+			caseData.push(positive);
+
+		} else if(caseType === 'Deaths') {
+			var deaths = '' + data.death;
+
+			caseData.push(deaths);
+		}
+		
+		console.log('cases: ' + cases + ' deaths: ' + deaths + ' recovered: ' + recovered);
+		
+	}
+	
+	return caseData;
+}
+
+// var today = new Date()
+// var priorDate = new Date().setDate(today.getDate()-30)
+// console.log((new Date(priorDate)).toLocaleDateString('en-CA'));
+
 
 // getDates(new Date(2020, 10, 8), new Date(2020, 11, 15));
 // getTimeData('CA', new Date(2020, 5, 5), new Date(2020, 5, 10));
@@ -164,22 +208,23 @@ window.onload = function() {
 		})
 
 		document.getElementById(HTML.confirmedTimeRange).addEventListener('change', (event) => {
-
+			Controller.setTimeframeCases('Confirmed',event.target.value)
 		})
 
 		document.getElementById(HTML.recoveredTimeRange).addEventListener('change', (event) => {
-			
+			Controller.setTimeframeCases('Recovered',event.target.value)
+
 		})
 
 		document.getElementById(HTML.deathTimeRange).addEventListener('change', (event) => {
-			
+			Controller.setTimeframeCases('Deaths',event.target.value)
+
 		})
 	};
 
 	let init = () => {
 		console.log('Initializing...');
 		setupEventListeners();
-		console.log(new Date()-30).format('YYYY-MM-DD');
 		Controller.setTotalStatistics();
 	}
 	init();
