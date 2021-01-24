@@ -68,6 +68,10 @@ async function setTimeframeStatistics(startDate, endDate, caseType, state) { // 
 		var response = await fetch(host + timeframe[i].split('-').join('') + '.json');
 		var data = await response.json();
 
+		if(data.hasOwnProperty('error')) {
+			continue;
+		}
+
 		if(caseType === 'Recovered') {
 			var recovered = '' + data.recovered;
 
@@ -193,8 +197,9 @@ let Controller = (() => {
 			}
 		},
 		async generateGraphs(caseType, specifiedDays) {
+			console.log(specifiedDays);
 			var endDate = new Date()
-			var startDate = new Date().setDate(endDate.getDate() - specifiedDays)
+			var startDate = new Date().setDate(endDate.getDate() - Number(specifiedDays))
 			
 			var dataYAxis = await setTimeframeStatistics(startDate, endDate, caseType, stateAbbr[state].toLowerCase());
 			var datesXAxis = getDates(startDate, endDate, false);
@@ -255,6 +260,7 @@ window.onload = function() {
 			Controller.setTimeframeCases('Confirmed', document.getElementById(HTML.confirmedTimeRange).value);
 			Controller.setTimeframeCases('Recovered', document.getElementById(HTML.recoveredTimeRange).value);
 			Controller.setTimeframeCases('Deaths', document.getElementById(HTML.deathTimeRange).value);
+			console.log(document.getElementById(HTML.confirmedTimeRange).value);
 			Controller.generateGraphs('Confirmed', document.getElementById(HTML.confirmedTimeRange).value);
 			Controller.generateGraphs('Recovered', document.getElementById(HTML.recoveredTimeRange).value);
 			Controller.generateGraphs('Deaths', document.getElementById(HTML.deathTimeRange).value);
