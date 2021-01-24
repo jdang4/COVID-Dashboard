@@ -83,10 +83,13 @@ let Controller = (() => {
 		death: 'death-stats',
 		USState: 'state-name',
 		stateDiv: 'state-div',
+		confirmedLabel: 'confirmed-label',
 		confirmedTimeRange: 'confirmed-time-range',
 		confirmedTimeStat: 'confirmed-time-stats',
+		recoveredLabel: 'recovered-label',
 		recoveredTimeRange: 'recovered-time-range',
 		recoveredTimeStat: 'recovered-time-stats',
+		deathLabel: 'death-label',
 		deathTimeRange: 'death-time-range',
 		deathTimeStat: 'death-time-stats',
 
