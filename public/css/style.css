@@ -8,8 +8,12 @@ body {
     color: black;
 }
 
-select{
+select.name {
     font-size: 20px;
+}
+
+select {
+    font-size: 18px;
 }
 
 img {
@@ -94,8 +98,16 @@ div.state-div {
     background-color: green;
 }
 
+.recovery-color {
+    color: green;
+}
+
 .death-bg {
     background-color: red;
+}
+
+.death-color {
+    color: red;
 }
 
 .card-title {
@@ -128,27 +140,14 @@ div.state-div {
     font-size: 18px;
 }
 
-/* Style the form - display items horizontally */
-.form-inline {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-  }
-  
-  /* Add some margins for each label */
-  .form-inline label {
-    margin: 5px 10px 5px 0;
-  }
-  
-  /* Style the input fields */
-  .form-inline input {
-    vertical-align: middle;
-    margin: 5px 10px 5px 0;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-  }
+.time-range-label {
+    font-size: 18px;
+    font-weight: 300;
+}
 
+.time-range {
+    margin-left: 10px;
+}
 
 
 /* for desktop view */
@@ -213,6 +212,15 @@ div.state-div {
         font-size: 5em;
         font-weight: 800;
         text-align: center;
+    }
+
+    #confirmed-time-range-label {
+        font-size: 18px;
+        font-weight: 300;
+    }
+    
+    #confirmed-time-range {
+        margin-left: 10px;
     }
     
 }

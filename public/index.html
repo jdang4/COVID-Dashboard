@@ -64,8 +64,16 @@
                     <div class="row">
                         <div class="col-lg-7"></div>
                         <div class="col-lg-5">
+                            <div class="text-center">
+                                <label for="confirmed-time-range" class="time-range-label">Select Days:</label>
+                                <select name="confirmed-time-range" class="time-range" id="confirmed-time-range">
+                                    <option value="30">Last 30 Days</option>
+                                    <option value="60">Last 60 Days</option>
+                                    <option value="90">Last 90 Days</option>
+                                </select>
+                            </div>
                             <div class="label-total-cases">Total Confirmed Cases</div>
-                            <div class="stats-total-cases confirmed-color">10,000</div>
+                            <div class="stats-total-cases confirmed-color" id="confirmed-time-stats">10,000</div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +85,21 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <h3>Data Here!</h3>
+                    <div class="row">
+                        <div class="col-lg-7"></div>
+                        <div class="col-lg-5">
+                            <div class="text-center">
+                                <label for="recovered-time-range" class="time-range-label">Select Days:</label>
+                                <select name="recovered-time-range" class="time-range" id="recovered-time-range">
+                                    <option value="30">Last 30 Days</option>
+                                    <option value="60">Last 60 Days</option>
+                                    <option value="90">Last 90 Days</option>
+                                </select>
+                            </div>
+                            <div class="label-total-cases">Total Recovered Cases</div>
+                            <div class="stats-total-cases recovery-color" id="recovered-time-stats">10,000</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-layout vertical-spacing card mt3">
@@ -87,7 +109,21 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <h3>Data Here!</h3>
+                    <div class="row">
+                        <div class="col-lg-7"></div>
+                        <div class="col-lg-5">
+                            <div class="text-center">
+                                <label for="death-time-range" class="time-range-label">Select Days:</label>
+                                <select name="death-time-range" class="time-range" id="death-time-range">
+                                    <option value="30">Last 30 Days</option>
+                                    <option value="60">Last 60 Days</option>
+                                    <option value="90">Last 90 Days</option>
+                                </select>
+                            </div>
+                            <div class="label-total-cases">Total Death Cases</div>
+                            <div class="stats-total-cases death-color" id="death-time-stats">10,000</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

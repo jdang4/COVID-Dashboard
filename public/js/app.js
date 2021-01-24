@@ -83,6 +83,13 @@ let Controller = (() => {
 		death: 'death-stats',
 		USState: 'state-name',
 		stateDiv: 'state-div',
+		confirmedTimeRange: 'confirmed-time-range',
+		confirmedTimeStat: 'confirmed-time-stats',
+		recoveredTimeRange: 'recovered-time-range',
+		recoveredTimeStat: 'recovered-time-stats',
+		deathTimeRange: 'death-time-range',
+		deathTimeStat: 'death-time-stats',
+
 	};
 
 	// define helper functions
