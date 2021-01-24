@@ -212,6 +212,9 @@ window.onload = function() {
 		document.getElementById(HTML.selectStates).addEventListener('change', (event) => {
 			Controller.setState(event.target.value);
 			Controller.setImg();
+			Controller.setTimeframeCases('Confirmed', 30)
+			Controller.setTimeframeCases('Recovered', 30)
+			Controller.setTimeframeCases('Deaths', 30)
 			Controller.setTotalStatistics();
 			
 		})
