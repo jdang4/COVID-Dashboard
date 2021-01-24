@@ -290,13 +290,13 @@ window.onload = function() {
 	let init = () => {
 		console.log('Initializing...');
 		setupEventListeners();
-		Controller.setTimeframeCases('Confirmed', 7);
-		Controller.setTimeframeCases('Recovered', 7);
-		Controller.setTimeframeCases('Deaths', 7);
+		Controller.setTimeframeCases('Confirmed', document.getElementById(HTML.confirmedTimeRange).value);
+		Controller.setTimeframeCases('Recovered', document.getElementById(HTML.recoveredTimeRange).value);
+		Controller.setTimeframeCases('Deaths', document.getElementById(HTML.deathTimeRange).value);
 		Controller.setTotalStatistics();
-		Controller.generateGraphs('Confirmed', 7);
-		Controller.generateGraphs('Recovered', 7);
-		Controller.generateGraphs('Deaths', 7);
+		Controller.generateGraphs('Confirmed', document.getElementById(HTML.confirmedTimeRange).value);
+		Controller.generateGraphs('Recovered', document.getElementById(HTML.recoveredTimeRange).value);
+		Controller.generateGraphs('Deaths', document.getElementById(HTML.deathTimeRange).value);
 
 	}
 	init();
