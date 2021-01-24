@@ -269,16 +269,20 @@ window.onload = function() {
 		})
 
 		document.getElementById(HTML.confirmedTimeRange).addEventListener('change', (event) => {
-			Controller.setTimeframeCases('Confirmed',event.target.value)
+			Controller.setTimeframeCases('Confirmed', event.target.value);
+			Controller.generateGraphs('Confirmed', event.target.value);
 		})
 
 		document.getElementById(HTML.recoveredTimeRange).addEventListener('change', (event) => {
-			Controller.setTimeframeCases('Recovered',event.target.value)
+			Controller.setTimeframeCases('Recovered', event.target.value);
+			Controller.generateGraphs('Recovered', event.target.value);
 
 		})
 
 		document.getElementById(HTML.deathTimeRange).addEventListener('change', (event) => {
-			Controller.setTimeframeCases('Deaths',event.target.value)
+			Controller.setTimeframeCases('Deaths', event.target.value);
+			Controller.generateGraphs('Deaths', event.target.value);
+
 
 		})
 	};
