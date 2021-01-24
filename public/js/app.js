@@ -60,9 +60,11 @@ async function setTimeframeStatistics(startDate, endDate, caseType, state) { // 
 	// var fetch = require("node-fetch");
 
 	var caseData = []
-	var timeframe = getDates(startDate, endDate);
+	var timeframe = getDates(startDate, endDate, true);
 
+	console.log(timeframe);
 	for(var i = 0; i < timeframe.length; i++) {
+		console.log(host + timeframe[i].split('-').join('') + '.json');
 		var response = await fetch(host + timeframe[i].split('-').join('') + '.json');
 		var data = await response.json();
 
@@ -91,7 +93,7 @@ async function setTimeframeStatistics(startDate, endDate, caseType, state) { // 
 }
 
 // fcn params are strings
-function getDates(startDate, endDate) {
+function getDates(startDate, endDate, isTimeframe) {
 	// const moment = require('moment');
 
 	var dateArray = [];
@@ -99,7 +101,11 @@ function getDates(startDate, endDate) {
 	var stop = moment(endDate);
 
 	while (start <= stop) {
-		dateArray.push(moment(start).format('YYYY-MM-DD').split('-').join(''));
+		if(isTimeframe) {
+			dateArray.push(moment(start).format('YYYY-MM-DD').split('-').join(''));
+		} else {
+			dateArray.push(moment(start).format('YYYY-MM-DD'));
+		}
 		start = moment(start).add(1, 'days');
 	}
 
@@ -120,14 +126,17 @@ let Controller = (() => {
 		death: 'death-stats',
 		USState: 'state-name',
 		stateDiv: 'state-div',
+
 		confirmedLabel: 'confirmed-label',
 		confirmedTimeRange: 'confirmed-time-range',
 		confirmedTimeStat: 'confirmed-time-stats',
 		confirmedGraph: 'confirmed-chart',
+
 		recoveredLabel: 'recovered-label',
 		recoveredTimeRange: 'recovered-time-range',
 		recoveredTimeStat: 'recovered-time-stats',
 		recoveredGraph: 'recovered-chart',
+
 		deathLabel: 'death-label',
 		deathTimeRange: 'death-time-range',
 		deathTimeStat: 'death-time-stats',
@@ -183,19 +192,47 @@ let Controller = (() => {
 				document.getElementById(HTML.deathLabel).innerText = 'Total Confirmed Cases In ' + specifiedDays + ' Days';
 			}
 		},
+		async generateGraphs(caseType, specifiedDays) {
+			var endDate = new Date()
+			var startDate = new Date().setDate(endDate.getDate() - specifiedDays)
+			
+			var dataYAxis = await setTimeframeStatistics(startDate, endDate, caseType, stateAbbr[state].toLowerCase());
+			var datesXAxis = getDates(startDate, endDate, false);
+			var id = '';
+
+			if(caseType === 'Recovered') {
+				id = document.getElementById(HTML.recoveredGraph);
+
+			} else if(caseType === 'Confirmed') {
+				id = document.getElementById(HTML.confirmedGraph);
+
+			} else if(caseType === 'Deaths') {
+				id = document.getElementById(HTML.deathGraph);
+			}
+
+			new Chart(id, {
+				type: 'line', 
+				data: {
+					labels: datesXAxis,
+					datasets: [{
+						data: dataYAxis,
+						label: caseType,
+					}]
+				},
+				options: {
+					title: {
+						display: true,
+						text: caseType + " Cases"
+					}
+				}
+			});
+			
+		}
 
 	}
 })();
 
 function getDifference(data) {
-	var sum = 0;
-	
-	// for(var i = 0; i < data.length; i++) {
-	// 	if(data) {
-	// 		sum += Number(data[i]);
-	// 	}
-	// }
-
 	return data[data.length-1] - data[0];
 }
 
@@ -215,9 +252,12 @@ window.onload = function() {
 		document.getElementById(HTML.selectStates).addEventListener('change', (event) => {
 			Controller.setState(event.target.value);
 			Controller.setImg();
-			Controller.setTimeframeCases('Confirmed', 7);
-			Controller.setTimeframeCases('Recovered', 7);
-			Controller.setTimeframeCases('Deaths', 7);
+			Controller.setTimeframeCases('Confirmed', document.getElementById(HTML.confirmedTimeRange).value);
+			Controller.setTimeframeCases('Recovered', document.getElementById(HTML.recoveredTimeRange).value);
+			Controller.setTimeframeCases('Deaths', document.getElementById(HTML.deathTimeRange).value);
+			Controller.generateGraphs('Confirmed', document.getElementById(HTML.confirmedTimeRange).value);
+			Controller.generateGraphs('Recovered', document.getElementById(HTML.recoveredTimeRange).value);
+			Controller.generateGraphs('Deaths', document.getElementById(HTML.deathTimeRange).value);
 			Controller.setTotalStatistics();
 			
 		})
@@ -244,6 +284,10 @@ window.onload = function() {
 		Controller.setTimeframeCases('Recovered', 7);
 		Controller.setTimeframeCases('Deaths', 7);
 		Controller.setTotalStatistics();
+		Controller.generateGraphs('Confirmed', 7);
+		Controller.generateGraphs('Recovered', 7);
+		Controller.generateGraphs('Deaths', 7);
+
 	}
 	init();
 }
