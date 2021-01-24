@@ -183,7 +183,7 @@ let Controller = (() => {
 			if(caseType === 'Recovered') {
 
 				document.getElementById(HTML.recoveredTimeStat).innerText = formatNumber(getDifference(data));
-				document.getElementById(HTML.recoveredLabel).innerText = 'Total Confirmed Cases In ' + specifiedDays + ' Days';
+				document.getElementById(HTML.recoveredLabel).innerText = 'Total Recovered Cases In ' + specifiedDays + ' Days';
 
 			} else if(caseType === 'Confirmed') {
 
@@ -193,7 +193,7 @@ let Controller = (() => {
 			} else if(caseType === 'Deaths') {
 
 				document.getElementById(HTML.deathTimeStat).innerText = formatNumber(getDifference(data));
-				document.getElementById(HTML.deathLabel).innerText = 'Total Confirmed Cases In ' + specifiedDays + ' Days';
+				document.getElementById(HTML.deathLabel).innerText = 'Total Death Cases In ' + specifiedDays + ' Days';
 			}
 		},
 		async generateGraphs(caseType, specifiedDays) {
