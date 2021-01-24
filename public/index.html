@@ -23,7 +23,14 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
+    <!--Axios-->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!--ChartJS-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <!--MomementJS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
     <!--Favicon-->
     <link rel="icon" type="image/png" href="favicon.ico" />
@@ -62,7 +69,9 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-7"></div>
+                        <div class="col-lg-7">
+                            <canvas class="line-chart chartjs-render-monitor" id="confirmed-chart"></canvas>
+                        </div>
                         <div class="col-lg-5">
                             <div class="text-center">
                                 <label for="confirmed-time-range" class="time-range-label">Select Days:</label>
@@ -86,7 +95,9 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-7"></div>
+                        <div class="col-lg-7">
+                            <canvas class="line-chart chartjs-render-monitor" id="recovered-chart"></canvas>
+                        </div>
                         <div class="col-lg-5">
                             <div class="text-center">
                                 <label for="recovered-time-range" class="time-range-label">Select Days:</label>
@@ -110,7 +121,9 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-7"></div>
+                        <div class="col-lg-7">
+                            <canvas class="line-chart chartjs-render-monitor" id="death-chart"></canvas>
+                        </div>
                         <div class="col-lg-5">
                             <div class="text-center">
                                 <label for="death-time-range" class="time-range-label">Select Days:</label>
