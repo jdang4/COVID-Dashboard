@@ -1,4 +1,4 @@
-states = {
+var states = {
 	  'Alabama': 'AL',
 	  'Alaska': 'AK',
 	  'Arizona': 'AZ',
@@ -131,13 +131,20 @@ let Controller = (() => {
 		},
 		setImg() {
 			document.getElementById(HTML.stateDiv).getElementsByTagName('img')[0].src = '../res/State-flags/' + stateAbbr[state].toLowerCase() + '.png';
-		}
+		},
+		setTimeframeCases(caseType, specifiedDays) {
+			if(caseType === 'Recovered') {
+
+			} else if(caseType === 'Confirmed') {
+
+			} else if(caseType === 'Deaths') {
+
+			}
+		},
 
 	}
 })();
 
-// getPositiveCases().then(data => console.log(data));
-// getStatistics('california');
 // getDates(new Date(2020, 10, 8), new Date(2020, 11, 15));
 // getTimeData('CA', new Date(2020, 5, 5), new Date(2020, 5, 10));
 
@@ -152,11 +159,24 @@ window.onload = function() {
 			Controller.setTotalStatistics();
 			
 		})
+
+		document.getElementById(HTML.confirmedTimeRange).addEventListener('change', (event) => {
+
+		})
+
+		document.getElementById(HTML.recoveredTimeRange).addEventListener('change', (event) => {
+			
+		})
+
+		document.getElementById(HTML.deathTimeRange).addEventListener('change', (event) => {
+			
+		})
 	};
 
 	let init = () => {
 		console.log('Initializing...');
 		setupEventListeners();
+		console.log(new Date()-30).format('YYYY-MM-DD');
 		Controller.setTotalStatistics();
 	}
 	init();
