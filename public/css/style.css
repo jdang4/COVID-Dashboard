@@ -21,6 +21,12 @@ img {
     height: 45px;
 }
 
+canvas {
+    width: 400;
+    height: 400;
+    display: block;
+}
+
 .header {
     background: #313133;
     padding: 25px 25px 25px 25px;
@@ -117,7 +123,7 @@ div.state-div {
 }
 
 .label-total-cases {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 300;
     margin-top: 18px;
     text-align: center;

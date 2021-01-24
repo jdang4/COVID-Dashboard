@@ -95,20 +95,23 @@ let Controller = (() => {
 
 	};
 
+	let formatNumber = (num) => { return num.toLocaleString(); }
+
 	// define helper functions
 	return {
 		// functions u want to access from Controller
 		getHTML() { return HTML; },
 		getState() { return state; },
 		setState(newState) { state = newState; },
+
 		setTotalStatistics() {
 			axios.get("https://corona.lmao.ninja/v2/states/" + state.toLowerCase() + "/").then( resp => {
 				let res = resp['data'];
 				
-				document.getElementById(HTML.active).innerText = res.active;
-				document.getElementById(HTML.confirmed).innerText = res.cases;
-				document.getElementById(HTML.recovered).innerText = res.recovered;
-				document.getElementById(HTML.death).innerText = res.deaths;
+				document.getElementById(HTML.active).innerText = formatNumber(res.active);
+				document.getElementById(HTML.confirmed).innerText = formatNumber(res.cases);
+				document.getElementById(HTML.recovered).innerText = formatNumber(res.recovered);
+				document.getElementById(HTML.death).innerText = formatNumber(res.deaths);
 				document.getElementById(HTML.USState).innerText = state;
 
 				console.log(res);
