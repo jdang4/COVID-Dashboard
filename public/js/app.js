@@ -166,17 +166,17 @@ let Controller = (() => {
 
 			if(caseType === 'Recovered') {
 
-				document.getElementById(HTML.recoveredTimeStat).innerText = getDifference(data);
+				document.getElementById(HTML.recoveredTimeStat).innerText = formatNumber(getDifference(data));
 				document.getElementById(HTML.recoveredLabel).innerText = 'Total Confirmed Cases In ' + specifiedDays + ' Days';
 
 			} else if(caseType === 'Confirmed') {
 
-				document.getElementById(HTML.confirmedTimeStat).innerText = getDifference(data);
+				document.getElementById(HTML.confirmedTimeStat).innerText = formatNumber(getDifference(data));
 				document.getElementById(HTML.confirmedLabel).innerText = 'Total Confirmed Cases In ' + specifiedDays + ' Days';
 
 			} else if(caseType === 'Deaths') {
 
-				document.getElementById(HTML.deathTimeStat).innerText = getDifference(data);
+				document.getElementById(HTML.deathTimeStat).innerText = formatNumber(getDifference(data));
 				document.getElementById(HTML.deathLabel).innerText = 'Total Confirmed Cases In ' + specifiedDays + ' Days';
 			}
 		},
