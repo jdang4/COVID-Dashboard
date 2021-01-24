@@ -123,12 +123,15 @@ let Controller = (() => {
 		confirmedLabel: 'confirmed-label',
 		confirmedTimeRange: 'confirmed-time-range',
 		confirmedTimeStat: 'confirmed-time-stats',
+		confirmedGraph: 'confirmed-chart',
 		recoveredLabel: 'recovered-label',
 		recoveredTimeRange: 'recovered-time-range',
 		recoveredTimeStat: 'recovered-time-stats',
+		recoveredGraph: 'recovered-chart',
 		deathLabel: 'death-label',
 		deathTimeRange: 'death-time-range',
 		deathTimeStat: 'death-time-stats',
+		deathGraph: 'death-chart',
 
 	};
 
@@ -212,9 +215,9 @@ window.onload = function() {
 		document.getElementById(HTML.selectStates).addEventListener('change', (event) => {
 			Controller.setState(event.target.value);
 			Controller.setImg();
-			Controller.setTimeframeCases('Confirmed', 30)
-			Controller.setTimeframeCases('Recovered', 30)
-			Controller.setTimeframeCases('Deaths', 30)
+			Controller.setTimeframeCases('Confirmed', 7);
+			Controller.setTimeframeCases('Recovered', 7);
+			Controller.setTimeframeCases('Deaths', 7);
 			Controller.setTotalStatistics();
 			
 		})
@@ -237,9 +240,9 @@ window.onload = function() {
 	let init = () => {
 		console.log('Initializing...');
 		setupEventListeners();
-		Controller.setTimeframeCases('Confirmed', 30)
-		Controller.setTimeframeCases('Recovered', 30)
-		Controller.setTimeframeCases('Deaths', 30)
+		Controller.setTimeframeCases('Confirmed', 7);
+		Controller.setTimeframeCases('Recovered', 7);
+		Controller.setTimeframeCases('Deaths', 7);
 		Controller.setTotalStatistics();
 	}
 	init();
